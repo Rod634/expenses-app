@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
     )
   ];
 
+  String transactionTitle = "";
+  String transactionAmmount = "";
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,37 @@ class MyApp extends StatelessWidget {
                 color: Colors.blue,
                 child: Text('Chart'),
               ),
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      TextField(
+                        decoration: InputDecoration(labelText: 'Title'),
+                        onChanged: (val) {
+                          transactionTitle = val;
+                        },
+                      ),
+                      TextField(
+                        decoration: InputDecoration(labelText: 'Ammount'),
+                        onChanged: (val) {
+                          transactionAmmount = val;
+                        },
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Add Transaction',
+                          style: TextStyle(
+                            color: Colors.purple,
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
             ),
             Column(
                 children: transactions.map((tx) {
