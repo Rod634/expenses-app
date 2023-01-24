@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import './transaction.dart';
 
 void main() => runApp(MyApp());
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
           title: Text("Expenses planner"),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               width: double.infinity,
@@ -42,14 +45,42 @@ class MyApp extends StatelessWidget {
               return Card(
                 child: Row(children: [
                   Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 15,
+                    ),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.purple,
+                      width: 2,
+                    )),
+                    padding: EdgeInsets.all(10),
                     child: Text(
-                      tx.amount.toString(),
+                      'R\$ ${tx.amount.toString()}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.purple,
+                      ),
                     ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(tx.title),
-                      Text(tx.date.toUtc().toString())
+                      Text(
+                        tx.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        DateFormat.yMMMd().format(tx.date.toUtc()),
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
                     ],
                   )
                 ]),
